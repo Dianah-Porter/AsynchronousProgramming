@@ -56,7 +56,7 @@ new Promise((resolve, reject)=>{
 
 new Promise((resolve, reject)=>{
     setTimeout(()=>{
-        let state = false;   //false runs catch while true runs then operations 
+        let state = true;   //false runs catch while true runs then operations 
         if(state){
             resolve(1)
         }
