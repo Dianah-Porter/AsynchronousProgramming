@@ -23,4 +23,4 @@ Promise.allSettled([
     new Promise((resolve, reject)=> setTimeout(()=> resolve(3), 1000))
     ]).then(result => console.log(result));
 
-
+    
