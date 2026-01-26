@@ -2,32 +2,25 @@
 https://jsonplaceholder.typicode.com/users
 */
 
-function fetchWithTimeout() {
+
+async function timeoutFetch(){
     let controller = new AbortController();
-    let timeout = setTimeout(() => controller.abort() ,5);
-    fetch ('https://jsonplaceholder.typicode.com/users', {signal: controller.signal}) 
-    .then(res => res.json())
-    .then(data => console.log(data))
-    .catch(err => {
-        if(err.name === "AbortError"){
-            console.log("The Request was aborted due to timeout");
-        } 
-    })
-    .finally(()=> clearInterval(timeout));
+    let signal = controller.signal; //connects  to fetch  
+    const timeoutId =  setTimeout(()=> controller.abort() ,5);    //controller.abort() --> cancels the request 
+
+    try {
+        let response = await fetch('https://jsonplaceholder.typicode.com/users', {signal})   //signal links fetch to controller
+        clearTimeout(timeoutId);
+        let data = await response.json();
+    }
+    catch(error){
+        if(error.name === 'AbortError') console.log("Request aborted!");
+
+    } 
+
 }
+timeoutFetch()
 
 
-function fetchwithout(){
-    let controller = new AbortController();
-    let timeout= setTimeout(()=> controller.abort() ,5);
-    fetch('https://www.example.com/users', {signal: controller.signal})
-    .then(res => res.json())
-    .then(data => console.log(data))
-    .catch(err => {
-        if(err.name == "AbortError"){
-            console.log("The request was aborted")
-        }
-    }).finally(()=> clearInterval(timeout));
-}
 
 
