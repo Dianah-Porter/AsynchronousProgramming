@@ -8,11 +8,14 @@ async function fetchUserTodos(){
     let requests =  await Promise.all(urls.map(url => fetch(url)));
     let responses = await Promise.all(requests.map(req => req.json()));
     console.log(responses );
+
+    let users = responses[0];
+    let todos =responses[1];
     let result = {}
-    for(let user of responses[0]){
+    for(let user of users){
         result.name = user.name;
         result.id = user.id;
-        result.todos = responses[1].filter(user => user.id === result.id)
+        result.todos = todos.filter(todo => todo.id === user.id)
     }
     console.log(result)
 }
