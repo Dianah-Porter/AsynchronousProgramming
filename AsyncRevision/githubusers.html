@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        async function fetchGitUser(){
+            try{
+            let usernames = ['Dianah-Porter', 'evariste060', 'cynthia-stac']
+            let request = await Promise.all(usernames.map(name => fetch(`https://api.github.com/users/${name}`)));
+            let response = await Promise.all(request.map(res => res.json()));
+                console.log(response)
+
+                for(let img of response){
+                    let image = document.createElement('img');
+                    image.src = img.avatar_url;
+                    image.height = 500;
+                    //image.width = 100;
+                    document.body.append(image)
+                }
+        }
+        catch{
+
+        }
+        }
+         
+        fetchGitUser();
+    </script>
+</body>
+</html>

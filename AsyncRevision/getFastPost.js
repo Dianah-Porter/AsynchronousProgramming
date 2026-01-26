@@ -6,33 +6,81 @@ https://jsonplaceholder.typicode.com/posts
 To ensure a seamless user experience, you are supposed to create a function called getFastPosts that fetches posts from these endpoints simultaneously (concurrently) and only presents data from the source that responds the quickest, while ignoring slower or potentially unreliable sources. Example of how the function should be used
  */
 
-
-
-function getFastPosts(){
-    return Promise.race([
-        fetch ('https://dummyjson.com/posts'),
-        fetch ('https://this-may-not-exist.com/posts'),
-        fetch ('https://jsonplaceholder.typicode.com/posts')
-    ]).then(res => res.json())
-    .then(data => console.log(data));
+async function getFastPost(){
+    let urls = ['https://dummyjson.com/posts', 'https://this-may-not-exist.com/posts','https://jsonplaceholder.typicode.com/posts'];
+    let returns = await Promise.any(urls.map(url => fetch(url)))
+    let response = await returns.json();
+    console.log(response)
+    //to display on the web 
+    // const title = document.getElementById('title')
+    // for(let i in response){
+    //     let element = document.createElement('p');
+    //     element.textContent = response[title.title]
+    //     title.append(element)
+    // }
 }
 
-getFastPosts();
+getFastPost()
 
-//ai response 
 
-function getFastPost(){
-    urls = [
-        "https://dummyjson.com/posts",
-        "https://this-may-not-exist.com/posts",
-        "https://jsonplaceholder.typicode.com/posts"
-    ]
 
-    const request = urls.map(url => {
-        fetch(url).then(res => res.json());
-    })
 
-    return Promise.race(request);
-}
 
-getFastPost();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function getFastPosts(){
+//     return Promise.race([
+//         fetch ('https://dummyjson.com/posts'),
+//         fetch ('https://this-may-not-exist.com/posts'),
+//         fetch ('https://jsonplaceholder.typicode.com/posts')
+//     ]).then(res => res.json())
+//     .then(data => console.log(data));
+// }
+
+// getFastPosts();
+
+// //ai response 
+
+// function getFastPost(){
+//     urls = [
+//         "https://dummyjson.com/posts",
+//         "https://this-may-not-exist.com/posts",
+//         "https://jsonplaceholder.typicode.com/posts"
+//     ]
+
+//     const request = urls.map(url => {
+//         fetch(url).then(res => res.json());
+//     })
+
+//     return Promise.race(request);
+// }
+
+// getFastPost();
