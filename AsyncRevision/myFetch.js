@@ -25,37 +25,3 @@ function myFetch(url){
     });
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function myFetch(url){
-    return new Promise((resolve, reject)=> {
-        let xml = new XMLHttpRequest();
-        xml.open("GET", url);
-
-        xml.onload = () => {
-            if(xml.status >= 200 && xml.status <= 300){
-                resolve(xml.responseText)
-            }else{
-                reject("Request failed")
-            }
-        };
-        xml.onerror = () => reject("Network error");
-        xml.send(); 
-    });   
-}
-
