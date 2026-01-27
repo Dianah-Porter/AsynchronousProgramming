@@ -1,24 +1,29 @@
 /*Write a JavaScript program that converts this callback-based function to a promise-based function.*/
 
-function callbackPromiseConversion(){
-return new Promise((resolve, reject)=>{
+/* function fetchData(callback) {
     setTimeout(() => {
-        resolve("Data received");
+      const data = "Data fetched successfully!";
+      callback(null, data);
+    }, 1000);
+  }
+  
+  fetchData((error, data) => {
+    if (error) {
+      console.error("Error:", error);
+    } else {
+      console.log(data);
+    }
+  });   */
+
+
+function fetchData(){
+  return new Promise((resolve, reject)=> {
+    setTimeout(()=> {
+      const data = "Data fetched successfully";
+      resolve(data);
     }, 1000)
-});
+  })
 }
 
-//Callback version
-function getData(callback) {
-  setTimeout(() => {
-    callback(null, "Data received");
-  }, 1000);
-}
-//Promise version
-function getDataPromise() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve("Data received");
-    }, 1000);
-  });
-}
+fetchData().then( res => res)
+.catch(err => console.log(err))
