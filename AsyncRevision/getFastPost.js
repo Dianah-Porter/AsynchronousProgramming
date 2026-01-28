@@ -8,16 +8,15 @@ To ensure a seamless user experience, you are supposed to create a function call
 
 async function getFastPost(){
     let urls = ['https://dummyjson.com/posts', 'https://this-may-not-exist.com/posts','https://jsonplaceholder.typicode.com/posts'];
-    let returns = await Promise.any(urls.map(url => fetch(url)))
-    let response = await returns.json();
-    console.log(response)
-    //to display on the web 
-    // const title = document.getElementById('title')
-    // for(let i in response){
-    //     let element = document.createElement('p');
-    //     element.textContent = response[title.title]
-    //     title.append(element)
-    // }
+    try{
+         let response = await Promise.any(urls.map(url => fetch(url)))
+    let data = await response.json();
+    console.log(data)
+    }
+    catch(error){
+        throw new Error("Error!")
+    }
+    
 }
 
 getFastPost()
