@@ -25,5 +25,5 @@ function fetchData(){
   })
 }
 
-fetchData().then( res => res)
+fetchData().then( res => console.log(res))
 .catch(err => console.log(err))

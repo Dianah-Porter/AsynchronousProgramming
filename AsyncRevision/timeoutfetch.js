@@ -11,6 +11,9 @@ async function timeoutFetch(){
     try {
         let response = await fetch('https://jsonplaceholder.typicode.com/users', {signal})   //signal links fetch to controller
         clearTimeout(timeoutId);
+        if(!response.ok){
+            throw new Error('HttpError')
+        }
         let data = await response.json();
     }
     catch(error){

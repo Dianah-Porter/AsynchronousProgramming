@@ -28,12 +28,12 @@ fetchToDo()
 
 /*5.	Extend the fetchToDo function from Question 4 to include custom headers in the request. Specifically, you need to add a User-Agent header with a custom value and a Content-Type header set to application/json. Additionally, modify the function to send a JSON payload in the request body. After sending the request, the function should parse the JSON response and log the parsed object to the console.*/
 
-function fetchToDo(url){
+
 function fetchToDo(){
     return new Promise((resolve, reject) => {
         let xhr = new XMLHttpRequest();
         xhr.open('POST', 'https://jsonplaceholder.typicode.com/todos/1'); //open or initializing a post request 
-
+        
         //custom headers 
         xhr.setRequestHeader('User-Agent', 'MyCustomApp/1.0');
         xhr.setRequestHeader('Content-Type' , 'application.json')
@@ -58,11 +58,11 @@ function fetchToDo(){
             completed: false,
             userId: 1
         };
-        
+
         xhr.send(JSON.stringify(todoData));
     })
 }
-}
+
 
 fetchToDo()
 .then(result => console.log(`Fetched Data = ${result}`))

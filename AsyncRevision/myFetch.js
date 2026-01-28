@@ -1,7 +1,7 @@
 /* Create a function called myFetch that should work as a simple version of the native fetch() API. The function myFetch should use the XMLHttpRequest to make a GET Request and return a promise that resolves with the request’s response and rejects with an error if any.*/
 
 function myFetch(url){
-    return new promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         let xhr = new XMLHttpRequest();
 
          // Step 1: Prepare the request
@@ -25,3 +25,7 @@ function myFetch(url){
     });
     
 }
+
+myFetch('https://jsonplaceholder.typicode.com/todos/1')
+.then(res => console.log("Result = " , res))
+.catch(error => console.log("The Error",err))
