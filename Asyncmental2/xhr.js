@@ -6,7 +6,7 @@ function fetchToDo(){
         let xhr = new XMLHttpRequest();
         xhr.open('GET', 'https://jsonplaceholder.typicode.com/todos/1');
 
-        xhr.onload = () =>{
+        xhr.onload = () => {
             if(xhr.status >= 200 && xhr.status < 300 ){
                 let data = JSON.parse(xhr.responseText)
                 resolve(data);

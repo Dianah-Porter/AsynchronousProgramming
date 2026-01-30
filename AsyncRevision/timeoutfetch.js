@@ -18,7 +18,6 @@ async function timeoutFetch(){
     }
     catch(error){
         if(error.name === 'AbortError') console.log("Request aborted!");
-
     } 
 
 }
